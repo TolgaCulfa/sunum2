@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crystal AI - Yapay Zeka Sunum Platformu</title>
+    <meta name="description" content="Crystal AI ile yapay zeka destekli profesyonel sunumlar oluşturun.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- ==================== AUTH SCREEN ==================== -->
+    <div class="auth-screen" id="authScreen">
+        <div class="auth-bg">
+            <div class="crystal-grid"></div>
+            <div class="crystal-orb crystal-orb-1"></div>
+            <div class="crystal-orb crystal-orb-2"></div>
+            <div class="crystal-orb crystal-orb-3"></div>
+            <div class="crystal-particles" id="crystalParticles"></div>
+        </div>
+        <div class="auth-container">
+            <div class="auth-brand">
+                <h1 class="auth-title">
+                    <img src="logos.png" alt="Logo" class="auth-logo-icon">
+                    Crystal <span class="text-glow">AI</span>
+                </h1>
+                <p class="auth-subtitle">Yapay Zeka Sunum Platformu</p>
+            </div>
+            <!-- Login Form (Initially Hidden) -->
+            <form class="auth-form" id="loginForm" style="display:none;">
+                <h2 class="form-title">Giriş Yap</h2>
+                <div class="input-group">
+                    <div class="input-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="2" y="4" width="20" height="16" rx="2" />
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                        </svg>
+                    </div>
+                    <input type="email" id="loginEmail" placeholder="E-posta adresiniz" required>
+                    <div class="input-glow"></div>
+                </div>
+                <div class="input-group">
+                    <div class="input-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                    </div>
+                    <input type="password" id="loginPassword" placeholder="Şifreniz" required>
+                    <div class="input-glow"></div>
+                </div>
+                <button type="submit" class="btn-crystal btn-crystal-primary btn-full" id="loginBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M13.8 12H3" />
+                    </svg>
+                    <span>Giriş Yap</span>
+                    <div class="btn-shimmer"></div>
+                </button>
+                <p class="auth-switch">Hesabınız yok mu? <a href="#" id="showRegister">Kayıt Ol</a></p>
+            </form>
+            <!-- Register Form (Default) -->
+            <form class="auth-form" id="registerForm">
+                <h2 class="form-title">Kayıt Ol</h2>
+                <div class="input-group">
+                    <div class="input-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                            <circle cx="12" cy="7" r="4" />
+                        </svg>
+                    </div>
+                    <input type="text" id="regUsername" placeholder="Kullanıcı adınız" required>
+                    <div class="input-glow"></div>
+                </div>
+                <div class="input-group">
+                    <div class="input-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="2" y="4" width="20" height="16" rx="2" />
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                        </svg>
+                    </div>
+                    <input type="email" id="regEmail" placeholder="E-posta adresiniz" required>
+                    <div class="input-glow"></div>
+                </div>
+                <div class="input-group">
+                    <div class="input-icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg>
+                    </div>
+                    <input type="password" id="regPassword" placeholder="Şifreniz (min 6 karakter)" required
+                        minlength="6">
+                    <div class="input-glow"></div>
+                </div>
+                <button type="submit" class="btn-crystal btn-crystal-primary btn-full" id="registerBtn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M13.8 12H3" />
+                    </svg>
+                    <span>Kayıt Ol</span>
+                    <div class="btn-shimmer"></div>
+                </button>
+                <p class="auth-switch">Zaten hesabınız var mı? <a href="#" id="showLogin">Giriş Yap</a></p>
+            </form>
+        </div>
+        <!-- Auth Footer -->
+        <div class="auth-footer">
+            <span>TolgaDev & Crystaldev İşbirliği</span>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN APP ==================== -->
+    <div class="app-screen" id="appScreen" style="display:none;">
+        <!-- Top Bar -->
+        <header class="topbar" id="topbar">
+            <div class="topbar-left">
+                <div class="topbar-brand">
+                    <div class="crystal-logo-sm">
+                        <img src="logos.png" alt="Logo" class="logo-img-sm">
+                    </div>
+                    <span class="topbar-brand-text">Crystal <span class="text-glow">AI</span></span>
+                </div>
+            </div>
+            <div class="topbar-center">
+                <div class="ai-model-indicator" id="modelIndicator">
+                    <div class="model-dot model-dot-active"></div>
+                    <span class="model-label">Cry 5.2 KX3D</span>
+                </div>
+            </div>
+            <div class="topbar-right">
+                <span class="user-greeting" id="userGreeting">Hoşgeldin</span>
+                <button class="btn-icon-only" id="logoutBtn" title="Çıkış Yap">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                        <polyline points="16 17 21 12 16 7" />
+                        <line x1="21" y1="12" x2="9" y2="12" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Layout -->
+        <div class="app-layout">
+            <!-- AI Chat Panel (Left) -->
+            <aside class="ai-panel" id="aiPanel">
+                <div class="ai-panel-header">
+                    <div class="ai-avatar">
+                        <div class="ai-avatar-ring"></div>
+                        <div class="ai-avatar-core">AI</div>
+                    </div>
+                    <div>
+                        <h3 class="ai-panel-title">Crystal Asistan</h3>
+                        <span class="ai-status"><span class="ai-status-dot"></span>Aktif</span>
+                    </div>
+                </div>
+
+                <!-- AI Progress Steps -->
+                <div class="ai-progress" id="aiProgress">
+                    <div class="progress-step active" data-step="1">
+                        <div class="step-connector"></div>
+                        <div class="step-icon">1</div>
+                        <div class="step-info">
+                            <span class="step-label">Konu Belirleme</span>
+                        </div>
+                    </div>
+                    <div class="progress-step" data-step="2">
+                        <div class="step-connector"></div>
+                        <div class="step-icon">2</div>
+                        <div class="step-info">
+                            <span class="step-label">Hedef Kitle</span>
+                        </div>
+                    </div>
+                    <div class="progress-step" data-step="3">
+                        <div class="step-connector"></div>
+                        <div class="step-icon">3</div>
+                        <div class="step-info">
+                            <span class="step-label">Slayt Ayarları</span>
+                        </div>
+                    </div>
+                    <div class="progress-step" data-step="4">
+                        <div class="step-connector"></div>
+                        <div class="step-icon">4</div>
+                        <div class="step-info">
+                            <span class="step-label">Model Seçimi</span>
+                        </div>
+                    </div>
+                    <div class="progress-step" data-step="5">
+                        <div class="step-connector"></div>
+                        <div class="step-icon">5</div>
+                        <div class="step-info">
+                            <span class="step-label">Oluşturma</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Messages -->
+                <div class="ai-chat" id="aiChat">
+                    <div class="chat-messages" id="chatMessages"></div>
+                </div>
+
+                <!-- Chat Input -->
+                <div class="ai-chat-input" id="aiChatInput">
+                    <input type="text" id="chatInput" placeholder="Cevabınızı yazın..." autocomplete="off">
+                    <button class="btn-send" id="sendBtn">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <line x1="22" y1="2" x2="11" y2="13" />
+                            <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                        </svg>
+                    </button>
+                </div>
+
+                <!-- Quick Actions (shown during certain steps) -->
+                <div class="ai-quick-actions" id="quickActions" style="display:none;"></div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <main class="main-content" id="mainContent">
+                <!-- Welcome / Empty State -->
+                <div class="welcome-state" id="welcomeState">
+                    <div class="welcome-crystal">
+                        <div class="crystal-3d">
+                            <div class="crystal-3d-face crystal-3d-face-1"></div>
+                            <div class="crystal-3d-face crystal-3d-face-2"></div>
+                            <div class="crystal-3d-face crystal-3d-face-3"></div>
+                            <div class="crystal-3d-face crystal-3d-face-4"></div>
+                        </div>
+                    </div>
+                    <h2 class="welcome-title">Crystal AI ile Sunum Oluştur</h2>
+                    <p class="welcome-desc">Sol paneldeki AI asistanla konuşarak muhteşem sunumlar oluşturun</p>
+                    <div class="welcome-features">
+                        <div class="wf-card">
+                            <div class="wf-icon">💎</div>
+                            <span>AI Destekli</span>
+                        </div>
+                        <div class="wf-card">
+                            <div class="wf-icon">🎨</div>
+                            <span>Çoklu Tema</span>
+                        </div>
+                        <div class="wf-card">
+                            <div class="wf-icon">✨</div>
+                            <span>Animasyonlar</span>
+                        </div>
+                        <div class="wf-card">
+                            <div class="wf-icon">📄</div>
+                            <span>PDF İndir</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Presentation Viewer -->
+                <div class="presentation-viewer" id="presentationViewer" style="display:none;">
+                    <!-- Toolbar -->
+                    <div class="viewer-toolbar" id="viewerToolbar">
+                        <div class="toolbar-left">
+                            <h3 class="toolbar-title" id="presTitle">Sunum</h3>
+                            <span class="toolbar-badge" id="presBadge">0 slayt</span>
+                        </div>
+                        <div class="toolbar-actions">
+                            <div class="transition-select">
+                                <label>Geçiş:</label>
+                                <select id="transitionSelect" class="mini-select">
+                                    <option value="fade">Solma</option>
+                                    <option value="slide-left">Sola Kayma</option>
+                                    <option value="slide-right">Sağa Kayma</option>
+                                    <option value="zoom">Yakınlaştırma</option>
+                                    <option value="flip">Döndürme</option>
+                                    <option value="cube">Küp</option>
+                                </select>
+                            </div>
+                            <button class="toolbar-btn" id="previewBtn" title="Ön İzleme">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                                <span>Ön İzleme</span>
+                            </button>
+                            <button class="toolbar-btn" id="editSlideBtn" title="Düzenle">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
+                                    <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
+                                </svg>
+                                <span>Düzenle</span>
+                            </button>
+                            <button class="toolbar-btn toolbar-btn-accent" id="downloadPdfBtn" title="PDF İndir">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 9l-5 5-5-5M12 12.8V2.5" />
+                                </svg>
+                                <span>PDF İndir</span>
+                            </button>
+                            <button class="toolbar-btn like-btn" id="likeBtn" title="Beğen"
+                                onclick="crystalAI.toggleLike()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M14 9V5a3 3 0 0 0-3-3l-4 9v11h11.28a2 2 0 0 0 2-1.7l1.38-9a2 2 0 0 0-2-2.3zM7 22H4a2 2 0 0 1-2-2v-7a2 2 0 0 1 2-2h3">
+                                    </path>
+                                </svg>
+                            </button>
+                            <button class="toolbar-btn dislike-btn" id="dislikeBtn" title="Beğenme"
+                                onclick="crystalAI.toggleDislike()">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
+                                    <path
+                                        d="M10 15v4a3 3 0 0 0 3 3l4-9V2H5.72a2 2 0 0 0-2 1.7l-1.38 9a2 2 0 0 0 2 2.3zm7-13h2.67A2.31 2.31 0 0 1 22 4v7a2.31 2.31 0 0 1-2.33 2H17">
+                                    </path>
+                                </svg>
+                            </button>
+                            <button class="toolbar-btn" id="newPresBtn" title="Yeni Sunum">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <path d="M12 5v14M5 12h14" />
+                                </svg>
+                                <span>Yeni</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Slide Thumbnails (Left Strip) -->
+                    <div class="slide-strip" id="slideStrip">
+                        <div class="slide-strip-list" id="slideStripList"></div>
+                    </div>
+
+                    <!-- Main Slide Area -->
+                    <div class="slide-area">
+                        <div class="slide-canvas" id="slideCanvas">
+                            <div class="slide-render" id="slideRender"></div>
+                        </div>
+                        <div class="slide-nav-bar">
+                            <button class="slide-nav-btn" id="prevSlideBtn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="15 18 9 12 15 6" />
+                                </svg>
+                            </button>
+                            <span class="slide-pagination"><span id="currentSlideNum">1</span> / <span
+                                    id="totalSlideNum">0</span></span>
+                            <button class="slide-nav-btn" id="nextSlideBtn">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2">
+                                    <polyline points="9 18 15 12 9 6" />
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Edit Panel (Right Slide-in) -->
+        <div class="edit-panel-overlay" id="editPanelOverlay" style="display:none;">
+            <div class="edit-panel" id="editPanel">
+                <div class="edit-panel-header">
+                    <h3>Slaytı Düzenle</h3>
+                    <button class="btn-close-panel" id="closeEditPanel">&times;</button>
+                </div>
+                <div class="edit-panel-body">
+                    <div class="eform-group">
+                        <label>Başlık</label>
+                        <input type="text" id="editTitle" class="eform-input">
+                    </div>
+                    <div class="eform-group">
+                        <label>İçerik (her satır bir madde)</label>
+                        <textarea id="editContent" class="eform-input eform-textarea" rows="6"></textarea>
+                    </div>
+                    <div class="eform-group">
+                        <label>Konuşmacı Notları</label>
+                        <textarea id="editNotes" class="eform-input eform-textarea" rows="3"></textarea>
+                    </div>
+                    <div class="eform-group">
+                        <label>AI ile Geliştir</label>
+                        <div class="enhance-row">
+                            <input type="text" id="enhanceInput" class="eform-input"
+                                placeholder="Talimat: Daha detaylı yap...">
+                            <button class="btn-crystal btn-crystal-sm" id="enhanceBtn">⚡ Geliştir</button>
+                        </div>
+                    </div>
+                    <div class="edit-panel-actions">
+                        <button class="btn-crystal btn-crystal-primary" id="saveEditBtn">💾 Kaydet</button>
+                        <button class="btn-crystal btn-crystal-ghost" id="cancelEditBtn">İptal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fullscreen Presentation Mode -->
+        <div class="fullscreen-presenter" id="fullscreenPresenter" style="display:none;">
+            <div class="fs-slide-container" id="fsSlideContainer"></div>
+            <div class="fs-controls">
+                <button class="fs-ctrl-btn" id="fsPrevBtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="15 18 9 12 15 6" />
+                    </svg></button>
+                <span class="fs-pagination"><span id="fsCurrentNum">1</span> / <span id="fsTotalNum">0</span></span>
+                <button class="fs-ctrl-btn" id="fsNextBtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2">
+                        <polyline points="9 18 15 12 9 6" />
+                    </svg></button>
+                <button class="fs-ctrl-btn fs-exit-btn" id="fsExitBtn"><svg width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <line x1="18" y1="6" x2="6" y2="18" />
+                        <line x1="6" y1="6" x2="18" y2="18" />
+                    </svg></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="crystal-footer" id="crystalFooter">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <img src="logos.png" alt="Logo" class="footer-logo-img">
+                <span class="footer-collab">TolgaDev & Crystaldev İşbirliği</span>
+            </div>
+            <div class="footer-socials">
+                <a href="#" class="footer-social-link" title="Discord" target="_blank">
+                    <svg width="22" height="22" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M23.6361 9.33998C22.212 8.71399 20.6892 8.25903 19.0973 8C18.9018 8.33209 18.6734 8.77875 18.5159 9.13408C16.8236 8.89498 15.1469 8.89498 13.4857 9.13408C13.3283 8.77875 13.0946 8.33209 12.8974 8C11.3037 8.25903 9.77927 8.71565 8.35518 9.3433C5.48276 13.4213 4.70409 17.3981 5.09342 21.3184C6.99856 22.6551 8.84487 23.467 10.66 23.9983C11.1082 23.4189 11.5079 22.8029 11.8523 22.1536C11.1964 21.9195 10.5683 21.6306 9.9748 21.2951C10.1323 21.1856 10.2863 21.071 10.4351 20.9531C14.0551 22.5438 17.9881 22.5438 21.5649 20.9531C21.7154 21.071 21.8694 21.1856 22.0251 21.2951C21.4299 21.6322 20.8 21.9211 20.1442 22.1553C20.4885 22.8029 20.8865 23.4205 21.3364 24C23.1533 23.4687 25.0013 22.6567 26.9065 21.3184C27.3633 16.7738 26.1261 12.8335 23.6361 9.33998ZM12.3454 18.9075C11.2587 18.9075 10.3676 17.9543 10.3676 16.7937C10.3676 15.6331 11.2397 14.6783 12.3454 14.6783C13.4511 14.6783 14.3422 15.6314 14.3232 16.7937C14.325 17.9543 13.4511 18.9075 12.3454 18.9075ZM19.6545 18.9075C18.5678 18.9075 17.6767 17.9543 17.6767 16.7937C17.6767 15.6331 18.5488 14.6783 19.6545 14.6783C20.7602 14.6783 21.6514 15.6314 21.6323 16.7937C21.6323 17.9543 20.7602 18.9075 19.6545 18.9075Z"
+                            fill="#5865F2" />
+                    </svg>
+                </a>
+                <a href="#" class="footer-social-link" title="YouTube" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="#ff0000">
+                        <path
+                            d="M20 0a4 4 0 0 1 4 4v16a4 4 0 0 1-4 4H4a4 4 0 0 1-4-4V4a4 4 0 0 1 4-4h16zm-7.7 7h-.6l-1.1.01c-1.48.03-3.7.1-4.46.29-.65.16-1.15.65-1.33 1.26-.18.64-.25 1.7-.29 2.46l-.02.82v.75c.03.76.1 2.09.31 2.85.18.61.68 1.1 1.33 1.26.74.19 2.87.26 4.34.29l1.41.01h1.16c1.45-.03 4-.09 4.81-.3a1.84 1.84 0 0 0 1.33-1.26c.2-.75.28-2.05.3-2.82v-.93c0-.67-.06-2.26-.3-3.13a1.84 1.84 0 0 0-1.33-1.26 25.9 25.9 0 0 0-3.88-.28L12.3 7zM10.46 9.9L14.39 12l-3.92 2.11V9.89z" />
+                    </svg>
+                </a>
+                <a href="#" class="footer-social-link" title="GitHub" target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                        viewBox="0 0 16 16">
+                        <path
+                            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8" />
+                    </svg>
+                </a>
+            </div>
+            <div class="footer-copy">
+                <span>&copy; 2024 Crystal AI. Tüm hakları saklıdır.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
